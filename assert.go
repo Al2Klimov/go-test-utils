@@ -10,10 +10,10 @@ import (
 
 type any = interface{}
 
-func AssertCallResult(t *testing.T, callf string, callv, expected, actual []any) {
+func AssertCallResult(t *testing.T, callf string, callv, expected, actual []any, expectedPositive bool) {
 	t.Helper()
 
-	if !reflect.DeepEqual(expected, actual) {
+	if reflect.DeepEqual(expected, actual) != expectedPositive {
 		buf := &bytes.Buffer{}
 
 		buf.Write([]byte("Got unexpected result from "))
